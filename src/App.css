@@ -10,7 +10,6 @@
 .logo_wrapper {
   height: 40vmin;
   width: 40vmin;
-  /* background-color: yellow; */
   display: flex;
   flex-direction: column;
   align-items: center;
