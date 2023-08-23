@@ -1,6 +1,5 @@
 import React from "react";
 import "./Sidebar.css";
-// import arrow_circle_left from "../../arrow_circle_left.svg";
 import { Toggle } from "../../hooks/useToggle";
 
 interface SidebarPresProps {
@@ -27,7 +26,6 @@ export const SidebarPres = (props: SidebarPresProps) => {
       {" "}
       <button className="sidebar_button" onClick={handleClick}>
         {visibleSidebar ? (
-          //   <span className="fade-in">Close</span>
           <span className="material-symbols-outlined icon_close">close</span>
         ) : (
           <span className="material-symbols-outlined icon_open">menu</span>
@@ -44,7 +42,7 @@ export const SidebarPres = (props: SidebarPresProps) => {
             defaultChecked={toggle.rotation}
             onChange={handleToggleRotation}
           />
-          Toggle Rotation
+          Rotation of Icon
         </label>
         <label>
           <input
@@ -52,7 +50,7 @@ export const SidebarPres = (props: SidebarPresProps) => {
             defaultChecked={toggle.iconSize}
             onChange={handleToggleIconSize}
           />
-          Toggle Icon Size with Cursor
+          Icon Size Changing with Moving Cursor
         </label>
         <label>
           <input
@@ -60,7 +58,7 @@ export const SidebarPres = (props: SidebarPresProps) => {
             defaultChecked={toggle.inactivityTimer}
             onChange={handleToggleInactivity}
           />
-          Toggle Inactivity Timer
+          Inactivity Timer
         </label>
       </div>
     </>

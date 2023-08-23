@@ -12,15 +12,18 @@ export const SidebarContainer = (props: SidebarContainerProps) => {
   const { toggle, setToggle } = props;
 
   const handleToggleRotation = () => {
-    setToggle({ ...toggle, rotation: !toggle.rotation });
+    setToggle((prevToggle) => ({ ...prevToggle, rotation: !toggle.rotation }));
   };
 
   const handleToggleIconSize = () => {
-    setToggle({ ...toggle, iconSize: !toggle.iconSize });
+    setToggle((prevToggle) => ({ ...prevToggle, iconSize: !toggle.iconSize }));
   };
 
   const handleToggleInactivity = () => {
-    setToggle({ ...toggle, inactivityTimer: !toggle.inactivityTimer });
+    setToggle((prevToggle) => ({
+      ...prevToggle,
+      inactivityTimer: !toggle.inactivityTimer,
+    }));
   };
 
   const handleClick = () => {

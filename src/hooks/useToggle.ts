@@ -6,7 +6,7 @@ export interface Toggle {
   inactivityTimer: boolean;
 }
 
-export const defaultToggle = {
+const defaultToggle = {
   rotation: true,
   iconSize: true,
   inactivityTimer: true,

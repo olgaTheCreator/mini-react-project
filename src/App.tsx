@@ -27,7 +27,7 @@ function App() {
     const intervalId = setInterval(() => {
       if (!moving && inside && toggle.inactivityTimer)
         setTimePassed(
-          () => initialTimePassed + Math.round(Date.now() - initialUnixTime)
+          () => initialTimePassed + Math.round(Date.now() - initialUnixTime),
         );
     }, 100);
     if (!toggle.inactivityTimer) {

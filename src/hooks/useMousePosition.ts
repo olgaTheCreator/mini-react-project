@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { throttle } from "../utils/throttle";
 
 export interface Coords {
   x: number;
   y: number;
   scale: number;
 }
+
 const useMousePosition = () => {
   const [coords, setCoords] = useState({ x: 0, y: 0, scale: 1 });
   const [moving, setMoving] = useState(false);
@@ -28,10 +30,11 @@ const useMousePosition = () => {
       });
       setMoving(true);
     };
-    window.addEventListener("mousemove", handleWindowMouseMove);
+    const throttledHandleMouseMove = throttle(handleWindowMouseMove, 20);
+    window.addEventListener("mousemove", throttledHandleMouseMove);
 
     return () => {
-      window.removeEventListener("mousemove", handleWindowMouseMove);
+      window.removeEventListener("mousemove", throttledHandleMouseMove);
       clearTimeout(timeout);
     };
   }, []);

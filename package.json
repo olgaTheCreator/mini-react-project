@@ -21,13 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write ."
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "prettier": "prettier --write .",
+    "eslint": "eslint src/**/*.{tsx,ts}"
   },
   "browserslist": {
     "production": [
