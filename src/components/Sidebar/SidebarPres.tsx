@@ -1,37 +1,38 @@
 import React from "react";
 import "./Sidebar.css";
+// import arrow_circle_left from "../../arrow_circle_left.svg";
+import { Toggle } from "../../hooks/useToggle";
 
-interface SidebarProps {
+interface SidebarPresProps {
+  toggle: Toggle;
+  handleToggleRotation: () => void;
+  handleToggleIconSize: () => void;
+  handleToggleInactivity: () => void;
+  handleClick: () => void;
   visibleSidebar: boolean;
-  toggle: {
-    rotation: boolean;
-    iconSize: boolean;
-    inactivityTimer: boolean;
-  };
-  setToggle: React.Dispatch<
-    React.SetStateAction<{
-      rotation: boolean;
-      iconSize: boolean;
-      inactivityTimer: boolean;
-    }>
-  >;
 }
 
-export const Sidebar = (props: SidebarProps) => {
-  const { visibleSidebar, toggle, setToggle } = props;
-  const handleToggleRotation = () => {
-    setToggle({ ...toggle, rotation: !toggle.rotation });
-  };
+export const SidebarPres = (props: SidebarPresProps) => {
+  const {
+    toggle,
+    handleToggleIconSize,
+    handleToggleInactivity,
+    handleToggleRotation,
+    handleClick,
+    visibleSidebar,
+  } = props;
 
-  const handleToggleIconSize = () => {
-    setToggle({ ...toggle, iconSize: !toggle.iconSize });
-  };
-
-  const handleToggleInactivity = () => {
-    setToggle({ ...toggle, inactivityTimer: !toggle.inactivityTimer });
-  };
   return (
     <>
+      {" "}
+      <button className="sidebar_button" onClick={handleClick}>
+        {visibleSidebar ? (
+          //   <span className="fade-in">Close</span>
+          <span className="material-symbols-outlined icon_close">close</span>
+        ) : (
+          <span className="material-symbols-outlined icon_open">menu</span>
+        )}
+      </button>
       <div
         className={`sidebar ${
           visibleSidebar ? "sidebar_show" : "sidebar_hide"
