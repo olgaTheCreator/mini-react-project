@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  overflow: hidden;
+  /* display: flex; */
+  position: relative;
 }
 
 .App-logo {
@@ -10,6 +13,7 @@
 .logo_wrapper {
   height: 40vmin;
   width: 40vmin;
+  /* background-color: yellow; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,6 +48,13 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.sidebar_button {
+  position: fixed;
+  right: 2rem;
+  top: 2rem;
+  z-index: 50;
 }
 
 @keyframes App-logo-spin {

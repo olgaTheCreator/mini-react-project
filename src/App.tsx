@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { Sidebar } from "./Sidebar";
 
 function App() {
   const [turningRight, setTurning] = useState(true);
@@ -8,8 +9,14 @@ function App() {
   const [moving, setMoving] = useState(false);
   const [timePassed, setTimePassed] = useState(0);
   const [inside, setInside] = useState(false);
+  const [visibleSidebar, setVisibleSidebar] = useState(false);
+  const [toggle, setToggle] = useState({
+    rotation: true,
+    iconSize: true,
+    inactivityTimer: true,
+  });
 
-  const handleTurning = () => setTurning(!turningRight);
+  const handleTurning = () => toggle.rotation && setTurning(!turningRight);
 
   const handleMouseEnter = () => {
     setInside(true);
@@ -17,13 +24,16 @@ function App() {
   const handleMouseLeave = () => {
     setInside(false);
   };
+  const handleClick = () => {
+    setVisibleSidebar(!visibleSidebar);
+    console.log(visibleSidebar);
+  };
   useEffect(() => {
     let timeout: NodeJS.Timeout;
 
     const handleWindowMouseMove = (event: MouseEvent) => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        console.log(inside);
         setMoving(false);
       }, 50);
       const w = window.innerWidth;
@@ -52,7 +62,6 @@ function App() {
         setTimePassed(
           () => timePassed + Math.round(Date.now() - initialUnixTime)
         );
-      console.log(timePassed);
     }, 100);
     return () => clearInterval(intervalId);
   }, [moving]);
@@ -70,7 +79,11 @@ function App() {
         >
           <img
             src={logo}
-            style={{ scale: `${coords.scale}` }}
+            style={
+              toggle.iconSize
+                ? { scale: `${coords.scale}` }
+                : { scale: "1", transition: "scale 0.2s linear" }
+            }
             className="App-logo"
             alt="logo"
           />
@@ -81,7 +94,7 @@ function App() {
         {/* <p>
           (x:{coords.x}, y:{coords.y}, scale:{coords.scale})
         </p> */}
-        <p>{timePassed}ms</p>
+
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -90,7 +103,16 @@ function App() {
         >
           Learn React
         </a>
+        {toggle.inactivityTimer && <p>{timePassed}ms</p>}
       </header>
+      <button className="sidebar_button" onClick={handleClick}>
+        {visibleSidebar ? "Close" : "Open"}
+      </button>
+      <Sidebar
+        visibleSidebar={visibleSidebar}
+        toggle={toggle}
+        setToggle={setToggle}
+      />
     </div>
   );
 }
